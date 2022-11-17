@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# Spectacle Template
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Spectacle
 
-## Available Scripts
+<p align="center"><img src="https://raw.githubusercontent.com/FormidableLabs/spectacle/ac6c9266/website/static/img/logo_spectacle.png" width=250></p>
 
-In the project directory, you can run:
+[Spectacle](https://formidable.com/open-source/spectacle/)은 코드를 통해 프리젠테이션 발표 자료를 만들 수 있는 [React](https://ko.reactjs.org/) 기반 오픈소스 프로젝트 입니다.
+다양한 형태의 컴포넌트를 지원하고, `Presentation Mode`와 `Print Mode` 등 유용한 기능들도 제공합니다.
+Spectacle의 더 자세한 내용은 공식 문서를 참고하세요.
 
-### `npm start`
+## Additional Components
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+만약 당신이 React에 익숙하다면, Spectacle이 제공하는 컴포넌트를 수정하거나, 당신이 원하는 컴포넌트를 직접 제작할 수 있습니다.
+이 프로젝트 템플릿에서는 다음의 추가적인 컴포넌트를 제공합니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **CodePane**
 
-### `npm test`
+    <img src="codepane.gif" width="360">
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    [Code slide](https://github.com/jamiebuilds/spectacle-code-slide)는 프리젠테이션에 코드를 추가하고, 원하는 라인에 주석을 추가할 수 있었습니다. Code Slide는 최신버전의 Spectacle에 통합됐지만, 아쉽게도 주석 기능은 포함되지 않았습니다.
+    이 프로젝트에 포함된 CodePane은 유용한 기능인 주석을 제공합니다.
+    ```js
+    import CodePane from 'component/code-pane/code-pane';
 
-### `npm run build`
+    export default function CodeSlide() {
+        return (
+            <CodePane
+                highlightRanges={[1, [2, 3], 4]}
+                descriptions={[
+                    "라인 시작",
+                    "클래스 선언"
+                ]}
+            >
+            </CodePane>
+        )
+    }
+    ```
+    더 자세한 예제는 [여기](https://github.com/OhByeongYun/spectacle-template/blob/main/src/slide/slide1.js#L50)를 참고하세요.
+- **Image Preloader**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    당신이 만약 슬라이드에 고화질 이미지를 추가한다면, 슬라이드에 처음 진입할 때 아마 당신의 관중은 빈 화면을 보게될지도 모릅니다.
+    이런 상황을 대비해 [Image Preloader](https://github.com/nlarche/boilerplate-spectacle)를 추가해 놓았습니다.
+    ```js
+    import preloader from 'component/util/preloader';
+    import FooImage from 'assets/foo.png';
+    import BarImage from 'assets/bar.png';
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    preload([FooImage, BarImage]);
+    ```
+    더 자세한 예제는 [여기](https://github.com/OhByeongYun/spectacle-template/blob/main/src/slide/index.js#L8)를 참고하세요.
